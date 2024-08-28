@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['idCita'])) {
 
         // Envía el mensaje por WhatsApp
         $mensaje = "Buen día, el cliente $nombre ha cancelado su cita del día $diaMesAnio a las $hora, su contacto es $telefono.";
-        enviarMensajeWhatsApp('+5215528382133', $mensaje);
+        enviarMensajeWhatsApp('+XXXXXXXXXXXXX', $mensaje);
     } else {
         $_SESSION['mensaje'] = "Error al cancelar la cita. Por favor, inténtalo de nuevo.";
     }

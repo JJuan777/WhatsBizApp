@@ -53,7 +53,7 @@ CREATE TABLE `tusuarios` (
 --
 
 INSERT INTO `tusuarios` (`IdUser`, `Nombre`, `Correo`, `Numero`, `PasswordU`) VALUES
-(2, 'Juan B', 'juanbalderramasan@gmail.com', '+5215528382133', '$2y$10$dsEvT.VFoLQjgmNh0EL1ue.7o5VoBhlGRZygBGBA8rjsybnpbHw7m'),
+(2, 'Juan B', 'XXXXXXXXXX@gmail.com', '+XXXXXXXXXXXXX', '$2y$10$dsEvT.VFoLQjgmNh0EL1ue.7o5VoBhlGRZygBGBA8rjsybnpbHw7m'),
 (5, 'Enrique', 'enriqueadmin@gmail.com', '+5215555555555', '$2y$10$hs2mvbxRDbWymjhw7Tn7nuMTPCyktN3tAlN17n6yzI1Fkc88DhfFu');
 
 --
