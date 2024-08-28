@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../../public/css/style.css">
+  <!-- Icon -->
+  <link rel="icon" href="../../public/images/icon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+<script>
+  window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const error = urlParams.get('error');
+      if (error === 'invalid') {
+          alert('Las credenciales son incorrectas. Por favor, inténtalo de nuevo.');
+      }
+  }
+</script>
+</head>
+<body>
+  <div class="main">  
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+      <form action="../Models/signup.php" method="post">
+        <label for="chk" aria-hidden="true">Regístrate</label>
+        <input type="text" name="Nombre" placeholder="Nombre" required="">
+        <input type="email" name="Correo" placeholder="Correo" required="">
+        <input type="text" name="Numero" placeholder="Número (10 dígitos)" maxlength="10" pattern="\d{10}" title="Número debe tener exactamente 10 dígitos" required="">
+        <input type="password" name="PasswordU" placeholder="Contraseña" required="">
+        <button type="submit">Agenda tu cita</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form action="../Models/login.php" method="post">
+        <label for="chk" aria-hidden="true" style="text-decoration: underline; cursor: pointer;">Inicia Sesión</label>
+        <input type="email" id="correo" name="correo" placeholder="Número o Correo" required="">
+        <input type="password" id="PasswordU" name="PasswordU" placeholder="Contraseña" required="">
+        <button type="submit">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
