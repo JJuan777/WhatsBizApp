@@ -8,14 +8,20 @@ if (!isset($_SESSION['idUser'])) {
     exit;
 }
 
+// Cargar variables de entorno
+require_once '../../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../'); 
+$dotenv->load();
+
 // Conectar a la base de datos
 require_once '../Config/conn.php';
-require_once '../../vendor/autoload.php';
 use Twilio\Rest\Client;
 
-// Configura tus credenciales de Twilio
-$sid = '';
-$token = '';
+// Configura tus credenciales de Twilio desde el archivo .env
+$sid = getenv('TWILIO_SID');
+$token = getenv('TWILIO_TOKEN');
 $twilio = new Client($sid, $token);
 
 // Obtener el ID del usuario actual
@@ -49,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $twilio->messages->create(
                 "whatsapp:$numero", // Número de destino con el prefijo "whatsapp:"
                 [
-                    "from" => "whatsapp:+",
+                    "from" => "whatsapp:+1234567890", // Reemplaza con tu número de WhatsApp habilitado en Twilio
                     'body' => $mensaje
                 ]
             );
@@ -60,9 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mensaje = "Buenos días, el cliente $nombre ha programado una cita para el día $diaMesAnio, a las $hora. Su número de teléfono es: $telefono";
         enviarMensajeWhatsApp($numeroDestino, $mensaje);
 
-         // Mensaje de éxito
-         $_SESSION['mensaje'] = "Cita agendada correctamente.";
-        
+        // Mensaje de éxito
+        $_SESSION['mensaje'] = "Cita agendada correctamente.";
         
     } else {
         // Mensaje de error

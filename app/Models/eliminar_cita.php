@@ -8,14 +8,20 @@ if (!isset($_SESSION['idUser'])) {
     exit;
 }
 
+// Cargar variables de entorno
+require_once '../../vendor/autoload.php';
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../../'); 
+$dotenv->load();
+
 // Conectar a la base de datos
 require_once '../Config/conn.php';
-require_once '../../vendor/autoload.php';
 use Twilio\Rest\Client;
 
-// Configura tus credenciales de Twilio
-$sid = '';
-$token = '';
+// Configura tus credenciales de Twilio desde el archivo .env
+$sid = getenv('TWILIO_SID');
+$token = getenv('TWILIO_TOKEN');
 $twilio = new Client($sid, $token);
 
 $IdCitas = $_POST['IdCitas'];
@@ -49,7 +55,7 @@ if ($stmtEliminar->execute()) {
         $twilio->messages->create(
             "whatsapp:$numero", // Número de destino con el prefijo "whatsapp:"
             [
-                "from" => "whatsapp:+XXXXXXXXXXXXXXX",
+                "from" => "whatsapp:+XXXXXXXXXXXXXXX", // Reemplaza con tu número de WhatsApp habilitado en Twilio
                 'body' => $mensaje
             ]
         );
