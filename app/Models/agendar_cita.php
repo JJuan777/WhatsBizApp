@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $twilio->messages->create(
                 "whatsapp:$numero", // Número de destino con el prefijo "whatsapp:"
                 [
-                    "from" => "whatsapp:+XXXXXXXXXXXX",
+                    "from" => "whatsapp:+",
                     'body' => $mensaje
                 ]
             );
